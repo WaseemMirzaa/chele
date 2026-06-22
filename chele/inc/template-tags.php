@@ -146,49 +146,64 @@ function chele_product_image( $post_id = null, $size = 'chele-product' ) {
  * @return string SVG markup.
  */
 function chele_placeholder_svg( $seed, $title = '' ) {
+	// Three-stop diagonal palettes for depth (light → mid → deep) + accent.
 	$palettes = array(
-		array( 'top' => '#f1e6d6', 'bottom' => '#e8cfca', 'accent' => '#a86b78' ),
-		array( 'top' => '#ecdcd4', 'bottom' => '#cfa6aa', 'accent' => '#6e4253' ),
-		array( 'top' => '#f1e8da', 'bottom' => '#d8c195', 'accent' => '#b7935e' ),
-		array( 'top' => '#e8dad5', 'bottom' => '#a9737f', 'accent' => '#57303f' ),
-		array( 'top' => '#e7e1d2', 'bottom' => '#bcc4af', 'accent' => '#7d8a6e' ),
-		array( 'top' => '#f3e9dd', 'bottom' => '#dcbcc0', 'accent' => '#9c6b78' ),
+		array( 's0' => '#f3e9db', 's1' => '#e7cdcb', 's2' => '#b07a86', 'acc' => '#8a5660' ),
+		array( 's0' => '#eedfd8', 's1' => '#cfa6aa', 's2' => '#5f3446', 'acc' => '#6e4253' ),
+		array( 's0' => '#f3eadc', 's1' => '#dcc598', 's2' => '#967446', 'acc' => '#9a7848' ),
+		array( 's0' => '#e9e3d4', 's1' => '#c2cbb4', 's2' => '#76836a', 'acc' => '#6f7a5b' ),
+		array( 's0' => '#f3e9dd', 's1' => '#e3bcc0', 's2' => '#7a3f55', 'acc' => '#7a3f55' ),
+		array( 's0' => '#ece1d2', 's1' => '#cbb39e', 's2' => '#6e4253', 'acc' => '#6e4253' ),
 	);
 	$p   = $palettes[ absint( $seed ) % count( $palettes ) ];
-	$uid = 'g' . absint( $seed ) . wp_rand( 1000, 9999 );
+	$uid = 'c' . absint( $seed ) . wp_rand( 1000, 9999 );
+	$gold = '#b7935e';
 
 	$label = $title ? esc_html( mb_strtoupper( wp_trim_words( $title, 4, '' ) ) ) : '';
 
-	// A single botanical sprig, reused via <use> and rotated into two corners.
-	$sprig = '<path d="M0 0 C 18 -26 40 -34 64 -30 M22 -16 C 30 -30 24 -44 8 -48 M30 -8 C 46 -16 56 -36 50 -54 M42 -2 C 60 -2 76 -18 78 -38" fill="none" stroke="' . esc_attr( $p['accent'] ) . '" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>'
-		. '<circle cx="6" cy="-50" r="3.4" fill="' . esc_attr( $p['accent'] ) . '" opacity="0.6"/>'
-		. '<circle cx="50" cy="-56" r="2.8" fill="' . esc_attr( $p['accent'] ) . '" opacity="0.5"/>'
-		. '<circle cx="78" cy="-40" r="3.2" fill="' . esc_attr( $p['accent'] ) . '" opacity="0.55"/>';
+	// Refined botanical sprig (stem, leaves, open roses), reused via <use>.
+	$sprig = '<path d="M0 0 C 18 -26 42 -34 66 -30 M20 -16 C 30 -32 24 -46 6 -50 M32 -8 C 50 -16 60 -38 52 -58 M46 -2 C 66 -2 82 -20 82 -42" fill="none" stroke="' . esc_attr( $p['acc'] ) . '" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>'
+		. '<circle cx="6" cy="-52" r="4.5" fill="none" stroke="' . esc_attr( $gold ) . '" stroke-width="1.4" opacity="0.75"/>'
+		. '<circle cx="6" cy="-52" r="1.6" fill="' . esc_attr( $gold ) . '" opacity="0.8"/>'
+		. '<circle cx="52" cy="-60" r="3.4" fill="none" stroke="' . esc_attr( $gold ) . '" stroke-width="1.2" opacity="0.7"/>'
+		. '<circle cx="82" cy="-44" r="4" fill="none" stroke="' . esc_attr( $gold ) . '" stroke-width="1.3" opacity="0.7"/>';
 
 	$svg  = '<svg class="chele-ph" viewBox="0 0 720 960" role="img" aria-label="' . esc_attr( $title ) . '" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">';
-	$svg .= '<defs><linearGradient id="' . esc_attr( $uid ) . '" x1="0" y1="0" x2="0.35" y2="1">'
-		. '<stop offset="0" stop-color="' . esc_attr( $p['top'] ) . '"/>'
-		. '<stop offset="1" stop-color="' . esc_attr( $p['bottom'] ) . '"/></linearGradient>'
-		. '<g id="sprig-' . esc_attr( $uid ) . '">' . $sprig . '</g></defs>';
-	$svg .= '<rect width="720" height="960" fill="url(#' . esc_attr( $uid ) . ')"/>';
 
-	// Inset hairline frame.
-	$svg .= '<rect x="34" y="34" width="652" height="892" fill="none" stroke="' . esc_attr( $p['accent'] ) . '" stroke-width="1" opacity="0.35"/>';
+	$svg .= '<defs>';
+	$svg .= '<linearGradient id="g' . esc_attr( $uid ) . '" x1="0" y1="0" x2="1" y2="1">'
+		. '<stop offset="0" stop-color="' . esc_attr( $p['s0'] ) . '"/>'
+		. '<stop offset="0.5" stop-color="' . esc_attr( $p['s1'] ) . '"/>'
+		. '<stop offset="1" stop-color="' . esc_attr( $p['s2'] ) . '"/></linearGradient>';
+	$svg .= '<radialGradient id="v' . esc_attr( $uid ) . '" cx="0.5" cy="0.4" r="0.78">'
+		. '<stop offset="0.5" stop-color="#2a141c" stop-opacity="0"/>'
+		. '<stop offset="1" stop-color="#2a141c" stop-opacity="0.42"/></radialGradient>';
+	$svg .= '<filter id="n' . esc_attr( $uid ) . '"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>';
+	$svg .= '<g id="s' . esc_attr( $uid ) . '">' . $sprig . '</g>';
+	$svg .= '</defs>';
+
+	// Base gradient + film grain + vignette for depth.
+	$svg .= '<rect width="720" height="960" fill="url(#g' . esc_attr( $uid ) . ')"/>';
+	$svg .= '<rect width="720" height="960" filter="url(#n' . esc_attr( $uid ) . ')" opacity="0.06"/>';
+	$svg .= '<rect width="720" height="960" fill="url(#v' . esc_attr( $uid ) . ')"/>';
+
+	// Grand arch (semicircular top) in gold.
+	$svg .= '<path d="M104 880 L104 408 A 256 256 0 0 1 616 408 L616 880 Z" fill="none" stroke="' . esc_attr( $gold ) . '" stroke-width="1.4" opacity="0.5"/>';
 
 	// Botanical sprigs in opposite corners.
-	$svg .= '<use href="#sprig-' . esc_attr( $uid ) . '" transform="translate(70 150)"/>';
-	$svg .= '<use href="#sprig-' . esc_attr( $uid ) . '" transform="translate(650 810) rotate(180)"/>';
+	$svg .= '<use href="#s' . esc_attr( $uid ) . '" transform="translate(150 250) scale(1.2)"/>';
+	$svg .= '<use href="#s' . esc_attr( $uid ) . '" transform="translate(570 720) rotate(180) scale(1.2)"/>';
 
-	// Faint Chelé "C" monogram watermark.
-	$svg .= '<text x="360" y="470" text-anchor="middle" font-family="\'Cormorant Garamond\', Georgia, serif" font-size="420" fill="' . esc_attr( $p['accent'] ) . '" opacity="0.08" font-weight="500">C</text>';
+	// Faint Chelé "C" monogram.
+	$svg .= '<text x="360" y="470" text-anchor="middle" font-family="\'Cormorant Garamond\', Georgia, serif" font-size="440" fill="#ffffff" opacity="0.12" font-weight="500">C</text>';
 
 	// Centred label block.
 	$svg .= '<g text-anchor="middle" font-family="\'Jost\', Arial, sans-serif">';
-	$svg .= '<text x="360" y="540" font-family="\'Cormorant Garamond\', Georgia, serif" font-size="46" fill="#4a3a34" opacity="0.85">Chelé</text>';
+	$svg .= '<text x="360" y="556" font-family="\'Cormorant Garamond\', Georgia, serif" font-size="52" fill="#fbf7f0" opacity="0.96">Chelé</text>';
 	if ( $label ) {
-		$svg .= '<text x="360" y="586" font-size="17" letter-spacing="5" fill="' . esc_attr( $p['accent'] ) . '">' . $label . '</text>';
+		$svg .= '<text x="360" y="602" font-size="17" letter-spacing="6" fill="' . esc_attr( $gold ) . '">' . $label . '</text>';
 	}
-	$svg .= '<line x1="320" y1="610" x2="400" y2="610" stroke="' . esc_attr( $p['accent'] ) . '" stroke-width="1" opacity="0.6"/>';
+	$svg .= '<line x1="324" y1="628" x2="396" y2="628" stroke="' . esc_attr( $gold ) . '" stroke-width="1" opacity="0.85"/>';
 	$svg .= '</g>';
 
 	$svg .= '</svg>';

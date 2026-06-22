@@ -15,8 +15,8 @@ if ( ! $cta2_link ) {
 }
 ?>
 <section class="hero" id="hero">
-	<span class="hero-orn hero-orn--1" aria-hidden="true"></span>
-	<span class="hero-orn hero-orn--2" aria-hidden="true"></span>
+	<span class="hero-orn hero-orn--1" aria-hidden="true" data-parallax="0.25"></span>
+	<span class="hero-orn hero-orn--2" aria-hidden="true" data-parallax="0.18"></span>
 
 	<div class="hero-inner">
 
@@ -31,8 +31,8 @@ if ( ! $cta2_link ) {
 			<p class="hero-text"><?php echo esc_html( chele_option( 'hero_subtitle', __( 'Celebrating the beauty of Pakistani fashion with timeless designs, premium fabrics and flawless details.', 'chele' ) ) ); ?></p>
 
 			<div class="hero-actions">
-				<a class="btn btn--primary" href="<?php echo esc_url( $cta_link ); ?>">
-					<?php echo esc_html( chele_option( 'hero_cta_text', __( 'Shop the Collection', 'chele' ) ) ); ?>
+				<a class="btn btn--primary" href="<?php echo esc_url( $cta_link ); ?>" data-magnetic>
+					<span><?php echo esc_html( chele_option( 'hero_cta_text', __( 'Shop the Collection', 'chele' ) ) ); ?></span>
 					<?php chele_icon( 'arrow', 18 ); ?>
 				</a>
 				<a class="btn btn--ghost" href="<?php echo esc_url( $cta2_link ); ?>">
@@ -48,13 +48,25 @@ if ( ! $cta2_link ) {
 		</div>
 
 		<div class="hero-visual reveal" data-reveal-delay="120">
-			<div class="hero-frame">
+			<svg class="hero-seal" viewBox="0 0 200 200" aria-hidden="true">
+				<defs>
+					<path id="cheleSealPath" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0" />
+				</defs>
+				<text>
+					<textPath href="#cheleSealPath" startOffset="0">CHELÉ · LADIES &amp; GIRLS · EST. 2024 · ELEGANCE · </textPath>
+				</text>
+				<circle cx="100" cy="100" r="3.5" fill="#b7935e" />
+			</svg>
+
+			<div class="hero-frame" data-parallax="0.08">
 				<?php echo chele_placeholder_svg( 2, __( 'Signature Edit', 'chele' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				<div class="hero-badge">
-					<span class="hero-badge-script">since</span>
-					<span class="hero-badge-year">2024</span>
-				</div>
 			</div>
+
+			<div class="hero-badge" data-parallax="0.16">
+				<span class="hero-badge-script">since</span>
+				<span class="hero-badge-year">2024</span>
+			</div>
+
 			<div class="hero-caption">
 				<span class="hero-caption-line"></span>
 				<span><?php esc_html_e( 'The Festive Collection', 'chele' ); ?></span>
