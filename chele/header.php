@@ -19,6 +19,13 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+<div class="chele-loader" data-loader aria-hidden="true">
+	<span class="loader-mark">Chelé</span>
+	<span class="loader-bar"></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scroll-progress" data-progress aria-hidden="true"></div>
+
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'chele' ); ?></a>
 
 <div id="page" class="site">

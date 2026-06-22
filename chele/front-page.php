@@ -15,6 +15,7 @@ get_header();
 	get_template_part( 'template-parts/marquee' );
 	get_template_part( 'template-parts/pillars' );
 	get_template_part( 'template-parts/products', null, array( 'title' => __( 'New This Season', 'chele' ), 'eyebrow' => __( 'The Edit', 'chele' ), 'limit' => 4 ) );
+	get_template_part( 'template-parts/stats' );
 	get_template_part( 'template-parts/story' );
 	get_template_part( 'template-parts/collections' );
 	get_template_part( 'template-parts/lookbook' );

@@ -9,6 +9,7 @@
 	</main><!-- #content -->
 
 	<footer id="colophon" class="site-footer">
+		<span class="footer-watermark" aria-hidden="true">Chelé</span>
 
 		<div class="footer-motto">
 			<span class="footer-botanical footer-botanical--left" aria-hidden="true">

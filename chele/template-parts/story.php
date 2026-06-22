@@ -15,7 +15,7 @@ $about_link = $about_page ? get_permalink( $about_page ) : '#';
 			<div class="story-frame story-frame--back">
 				<?php echo chele_placeholder_svg( 5, __( 'The Atelier', 'chele' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
-			<div class="story-frame story-frame--front">
+			<div class="story-frame story-frame--front" data-parallax="0.07">
 				<?php echo chele_placeholder_svg( 1, __( 'Hand Work', 'chele' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 		</div>

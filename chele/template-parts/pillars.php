@@ -17,7 +17,8 @@ $pillars = array(
 		<div class="pillars-grid">
 			<?php foreach ( $pillars as $i => $pillar ) : ?>
 				<article class="pillar reveal" data-reveal-delay="<?php echo esc_attr( $i * 90 ); ?>">
-					<span class="pillar-icon"><?php chele_icon( $pillar[0], 30 ); ?></span>
+					<span class="pillar-index"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
+					<span class="pillar-icon"><?php chele_icon( $pillar[0], 28 ); ?></span>
 					<h3 class="pillar-title"><?php echo esc_html( $pillar[1] ); ?></h3>
 					<p class="pillar-text"><?php echo esc_html( $pillar[2] ); ?></p>
 				</article>
