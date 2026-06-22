@@ -1,0 +1,74 @@
+/*
+Theme Name: Chelé
+Theme URI: https://www.chele.pk
+Author: Chelé
+Author URI: https://www.chele.pk
+Description: Chelé — Ladies & Girls Designer Dresses of Pakistan. A premium, luxury fashion-house WordPress theme with an editorial layout, a built-in Product showcase (no plugins required), refined typography and an ivory · plum · rose · gold palette inspired by the Chelé brand identity. Deploy instantly: upload, activate, and the homepage, navigation and sample collection are created for you.
+Version: 1.0.0
+Requires at least: 5.9
+Tested up to: 6.5
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: chele
+Tags: e-commerce, fashion, custom-colors, custom-logo, custom-menu, featured-images, full-width-template, theme-options, translation-ready, blog, editor-style
+*/
+
+/* -------------------------------------------------------------------------
+   style.css holds only the WordPress theme header and a minimal safety
+   baseline. The full design system lives in assets/css/main.css, which is
+   enqueued with a version stamp for cache-busting. Keeping them separate
+   keeps the header clean and lets the design layer evolve independently.
+   ---------------------------------------------------------------------- */
+
+:root {
+	--chele-fallback-bg: #f5efe6;
+	--chele-fallback-ink: #3a3036;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	margin: 0;
+	background-color: var(--chele-fallback-bg);
+	color: var(--chele-fallback-ink);
+	font-family: "Jost", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Accessibility: visually-hidden helper used by skip-link and screen-reader text. */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: #fff;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	clip-path: none;
+	color: #3a3036;
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 700;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}

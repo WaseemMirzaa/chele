@@ -1,0 +1,13 @@
+# Build artifact
+chele.zip
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
